@@ -24,8 +24,7 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    # if we are in Prod, use HOST and PORT specified
     try:
-        app.run(host=str(env_settings['HOST']), port=80)
+        app.run(host='0.0.0.0') # Configure again for different env settings
     except config.ConfigurationError:
         app.run()
