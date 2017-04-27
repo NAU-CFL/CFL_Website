@@ -1,0 +1,24 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{ title }} - Computational Finance Lab</title>
+    {% else %}
+    <title>Welcome Computational Finance Lab</title>
+    {% endif %}
+  </head>
+  <body>
+    <div>Welcome to
+      <ul>
+        <li><a href="/index">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#people">People</a></li>
+        <li><a href="#scripts">Scripts</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <hr>
+    {% block content %}{% endblock %}
+  </body>
+</html>
