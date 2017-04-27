@@ -19,3 +19,27 @@ def index():
                            title='Home',
                            user=user,
                            posts=posts)
+@app.route('/scripts')
+def scripts():
+    return render_template('scripts.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/people')
+def people():
+    return render_template('people.html')
+
+@app.route('/research')
+def research():
+    return render_template('research.html')
+
+# Blog page will be linked to jekyll-markdown blog
+# @app.route('/blog')
+# def blog():
+#     return render_template('blog.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
