@@ -3,7 +3,6 @@ from app import app
 
 # Route decorators to referance urls
 @app.route('/')
-@app.route('/index')
 def index():
     user = {'nickname': 'Kemal'}  # fake user
     posts = [  # fake array of posts
