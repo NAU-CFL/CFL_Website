@@ -5,10 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Enes Kemal Ergin">
-    <link href="static/css/bootstrap.min.css" rel="stylesheet"> <!-- Bootstrap Core CSS -->
-    <link href="static/css/modern-business.css" rel="stylesheet"> <!-- Custom CSS -->
-    <link href="static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> <!-- Custom Fonts -->
-    <title>Computational Finance Lab</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet"/> <!-- Bootstrap Core CSS -->
+    <link href="{{ url_for('static', filename='css/modern-business.css') }}" rel="stylesheet"/><!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
+    <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">  -->
+    {% if title %}
+      <title>Computational Finance Lab</title>
+    {% else %}
+      <title>Computational Finance Lab</title>
+    {% endif %}
   </head>
   <body>
 
@@ -28,33 +33,20 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/research">Research</a></li>
-                    <li><a href="/people">Our Team</a></li>
-                    <li><a href="/scripts">Scripts</a></li>
-                    <li><a href="http://eneskemalergin.github.io">Blog</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="{{url_for('.about')}}">About</a></li>
+                    <li><a href="{{url_for('.research')}}">Research</a></li>
+                    <li><a href="{{url_for('.people')}}">Our Team</a></li>
+                    <li><a href="{{url_for('.scripts')}}">Scripts</a></li>
+                    <li><a href="{{url_for('.blog')}}">Blog</a></li>
+                    <li><a href="{{url_for('.contact')}}">Contact</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->
     </nav> <!-- End of navbar -->
-    {% block content%}
-    {% endblock%}
 
-    {% block script_page %}
+    {% block page_content %}
     {% endblock %}
 
-    {% block about_page %}
-    {% endblock %}
-
-    {% block people_page %}
-    {% endblock %}
-
-    {% block research_page %}
-    {% endblock %}
-
-    {% block contact_page %}
-    {% endblock %}
 
     <!-- Footer -->
     <!-- Needs more work! -->
@@ -78,16 +70,16 @@
         <div class="col-md-4">
           <br>
           <br>
-                <a href="http://www.na.edu"><img src="/static/media/NAU_Logo_small.png" width="250"></a>
+                <a href="http://www.na.edu"><img src="{{url_for('static', filename='media/NAU_Logo_small.png')}}" width="250"></a>
         </div>
       </div>
     </footer>
 
     <!-- JS Script Links -->
     <!-- jQuery -->
-    <script src="static/js/jquery.js"></script>
+    <script src="{{url_for('static',filename='js/jquery.js')}}"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="static/js/bootstrap.min.js"></script>
+    <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
     <!-- Script to Activate the Carousel -->
     <script>
     $('.carousel').carousel({
