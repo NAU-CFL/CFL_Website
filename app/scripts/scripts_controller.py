@@ -1,6 +1,6 @@
 from flask import render_template, request, Blueprint, jsonify
-from .function import compute
-from .model import InputForm
+from .stock_visual import plot_data
+from .forms import InputForm
 
 script = Blueprint('script', __name__,
                     url_prefix='/script',
@@ -8,13 +8,12 @@ script = Blueprint('script', __name__,
                     static_folder='static',
                     static_url_path='/scripts/static')
 
-@script.route('/function_visual', methods=['GET','POST'])
-def view_function():
+@script.route('/stock_plot', methods=['GET','POST'])
+def stock_plot():
     form = InputForm(request.form)
     if request.method == 'POST' and form.validate():
         result = compute(form.A.data, form.b.data,
                          form.w.data, form.T.data)
     else:
         result = None
-
-    return render_template('view_function.html', form=form, result=result)
+    return render_template('graph.html', script=script, div=div)

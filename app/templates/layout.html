@@ -33,18 +33,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- <li><a href="{{url_for('.about')}}">About</a></li>
-                    <li><a href="{{url_for('.research')}}">Research</a></li>
-                    <li><a href="{{url_for('.people')}}">Our Team</a></li>
-                    <li><a href="{{url_for('.scripts')}}">Scripts</a></li>
-                    <li><a href="{{url_for('.blog')}}">Blog</a></li>
-                    <li><a href="{{url_for('.contact')}}">Contact</a></li> -->
-                    <!-- Different way to refer -->
                     <li><a href="/about">About</a></li>
                     <li><a href="/research">Research</a></li>
                     <li><a href="/people">Our Team</a></li>
                     <li><a href="/scripts">Scripts</a></li>
-                    <li><a href="">Blog</a></li>
+                    <li><a href="/blog">Blog</a></li>
                     <li><a href="/contact">Contact</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -61,22 +54,19 @@
     <footer>
       <div class="row">
         <div class="col-md-4">
-          <p><a href="/" style="color: black;">The Computational Finance Lab</a> &copy; 2017</p>
           <div class="ocustom-footer-small">
     	      Department of Business Administration<br>
     	      Department of Computer Science<br>
     	      North American University<br>
-    	      <br>
-    	      Main Building 8th Floor, Office 834<br>
-    	      11929 W. Airport Blvd &middot; Stafford, TX 77477<br>
     	    </div>
         </div>
         <div class="col-md-4">
-                <!-- <a href="#"><img src="#" width="250">Media1</a> -->
+
+                <p><a href="/" style="color: black;">The Computational Finance Lab</a> &copy; 2017</p>
+                Main Building 8th Floor, Office 834<br>
+                11929 W. Airport Blvd &middot; Stafford, TX 77477<br>
         </div>
         <div class="col-md-4">
-          <br>
-          <br>
                 <a href="http://www.na.edu"><img src="{{url_for('static', filename='media/NAU_Logo_small.png')}}" width="250"></a>
         </div>
       </div>
