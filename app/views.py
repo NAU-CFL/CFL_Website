@@ -1,4 +1,3 @@
-import subprocess
 from app import app
 from flask import render_template, make_response, redirect
 

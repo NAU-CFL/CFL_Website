@@ -4,5 +4,6 @@ from flask import Flask
 app = Flask(__name__)
 from app import views
 
-# Adding blueprints for scripts and their templates
-from scripts.stocks import
+
+from .scripts.scripts_controller import script as script_blueprint
+app.register_blueprint(script_blueprint, url_prefix='/script')
