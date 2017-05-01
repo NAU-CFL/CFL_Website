@@ -1,5 +1,6 @@
-from flask import render_template, make_response, redirect
+import subprocess
 from app import app
+from flask import render_template, make_response, redirect
 
 # Route decorators to referance urls
 @app.route('/')
@@ -52,21 +53,3 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_server_error(e):
     return render_template('500.html'), 500
-
-
-
-# Experimental routes:
-# @app.route('/user/<name>') # <name> is dynamic part
-# @app.route('/user/<int:int_id>')
-# def user(int_id):
-#     if int_id == 9999:
-#         name = 'Enes'
-#         return('<h1>Hello, %s!</h1>' % name)
-#     else:
-#         return("<h1>Hello, Stranger!</h1>")
-#
-# @app.route('/response_example')
-# def response_example():
-#     response = make_response('<h1>This document carries a cookie!</h1>')
-#     response.set_cookie('answer', '42')
-#     return response
