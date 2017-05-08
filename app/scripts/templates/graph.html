@@ -1,18 +1,39 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.2.min.css" type="text/css" />
-    <link href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.2.min.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.2.min.js"></script>
-    <script src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.2.min.js"></script>
+    <meta charset='utf-8' />
+    <meta http-equiv='content-type' content='text/html; charset=utf-8' />
 
-    {{ script | safe }}
+    <title>Embed Demo</title>
+
+    {{ js_resources|indent(4)|safe }}
+
+    {{ css_resources|indent(4)|safe }}
+
+    {{ plot_script|indent(4)|safe }}
 
   </head>
   <body>
-    <div class=page>
-      <h1>Close price of last month</h1>
-        {{ div | safe }}
-    </div>
+    <!-- A simple form for changing the graph -->
+    <p> Select your settings: </p>
+    <form name="color_button" method='GET'>
+        Color:
+        <select name="color">
+            <option {{ "selected" if color|indent(4)|safe == "Red" }} value="Red">Red</option>
+            <option {{ "selected" if color|indent(4)|safe == "Green" }} value="Green">Green</option>
+            <option {{ "selected" if color|indent(4)|safe == "Blue" }} value="Blue">Blue</option>
+            <option {{ "selected" if color|indent(4)|safe == "Black" }} value="Black">Black</option>
+        </select>
+        <br>
+        From:
+        <input type="text" name="_from" value="{{ _from }}">
+        <br>
+        To:
+        <input type="text" name="to" value="{{ to }}">
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+    {{ plot_div|indent(4)|safe }}
+    <p> Demonstrates some very simple embedding into a webpage</p>
   </body>
 </html>
