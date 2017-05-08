@@ -1,5 +1,6 @@
 from flask import render_template, request, Blueprint, jsonify
 from .forms import InputForm
+from .stock_visual import plot_data
 
 script = Blueprint('script', __name__,
                     url_prefix='/script',
@@ -7,55 +8,22 @@ script = Blueprint('script', __name__,
                     static_folder='static',
                     static_url_path='/scripts/static')
 
-from bokeh.embed import components
-from bokeh.plotting import figure
-from bokeh.resources import INLINE
-from bokeh.util.string import encode_utf8
-
-colors = {
-    'Black': '#000000',
-    'Red':   '#FF0000',
-    'Green': '#00FF00',
-    'Blue':  '#0000FF',
-}
-
-def getitem(obj, item, default):
-    if item not in obj:
-        return default
-    else:
-        return obj[item]
-
 
 @script.route('/stock_plot', methods=['GET','POST'])
 def stock_plot():
-    """ Very simple embedding of a polynomial chart
-    """
+    form = InputForm()
+    _ticker = form.ticker_symbol.data
+    _start = form.start.data
+    _end = form.end.data
 
-    # Grab the inputs arguments from the URL
-    args = request.args
-
-    # Get all the form arguments in the url with defaults
-    color = getitem(args, 'color', 'Black')
-    _from = int(getitem(args, '_from', 0))
-    to = int(getitem(args, 'to', 10))
-
-    # Create a polynomial line graph with those arguments
-    x = list(range(_from, to + 1))
-    fig = figure(title="Polynomial")
-    fig.line(x, [i ** 2 for i in x], color=colors[color], line_width=2)
-
-    js_resources = INLINE.render_js()
-    css_resources = INLINE.render_css()
-
-    script, div = components(fig)
-    html = render_template(
-        'graph.html',
-        plot_script=script,
-        plot_div=div,
-        js_resources=js_resources,
-        css_resources=css_resources,
-        color=color,
-        _from=_from,
-        to=to
-    )
+    plot_data(_ticker, _start, _end)
+    html = render_template( 'embed.html',
+            plot_script=script,
+            plot_div=div,
+            js_resources=js_resources,
+            css_resources=css_resources,
+            _ticker=_ticker,
+            _start=_start,
+            _end=_end
+        )
     return encode_utf8(html)

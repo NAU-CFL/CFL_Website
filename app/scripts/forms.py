@@ -1,9 +1,12 @@
-from wtforms import Form, TextField, validators
+from flask_wtf import Form
+from wtforms.validators import Required
+from wtforms import TextField, IntegerField, SubmitField
 
 class InputForm(Form):
     ticker_symbol = TextField(
-        label='Ticker Symbol', validators=[validators.InputRequired()])
-    start = TextField(
-        label='Start Date', default='', validators=[validators.InputRequired()])
-    end = TextField(
-        label='End Date', default='', validators=[validators.InputRequired()])
+        label='Ticker Symbol', validators=[Required()])
+    start = IntegerField(
+        label='Start Year', default='', validators=[Required()])
+    end = IntegerField(
+        label='End Year', default='', validators=[Required()])
+    submit = SubmitField('Submit')
